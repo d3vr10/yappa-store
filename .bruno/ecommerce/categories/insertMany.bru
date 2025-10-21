@@ -1,0 +1,28 @@
+meta {
+  name: insertMany
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{SERVER_URL}}/categories
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {
+      "name": "kitchen",
+      "description": "Those things you put in the kitchen for alleviating the activity of cooking.. somehow.."
+    }, 
+    {
+      "name": "bathroom",
+      "description": "Those things you put in the bathroom to beautify the \"experience\""
+    }
+  ]
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,8 @@
+services:
+  mongo:
+    image: mongodb/mongodb-community-server:8.0.15
+    ports:
+    - 27017:27017
+    environment:
+    - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+    - MONGO_INITDB_ROOT_PASSWORD=admin123

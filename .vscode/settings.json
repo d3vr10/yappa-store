@@ -1,0 +1,10 @@
+{
+    "yaml.schemas": {
+        "./yaml-schema.json": [
+            "config.yml",
+            "config.yaml",
+            "file:///c%3A/Users/d3vr10/Documents/postfix-adminjs/config.yml"
+        ]
+    }, 
+    "files.eol": "\n"
+}

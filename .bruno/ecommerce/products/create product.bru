@@ -1,0 +1,28 @@
+meta {
+  name: create product
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{SERVER_URL}}/products
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Roo",
+    "description": "Tomate para ti",
+    "category": "One of them i guess",
+    "brandName": "SuperGGBrand",
+    "stockCount": 0,
+    "rating": 0,
+    "reviews": [],
+    "images": []
+  }
+}
+
+settings {
+  encodeUrl: true
+}

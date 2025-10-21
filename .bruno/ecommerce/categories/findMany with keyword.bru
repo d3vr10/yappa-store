@@ -1,0 +1,19 @@
+meta {
+  name: findMany with keyword
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{SERVER_URL}}/categories?keywords=kitchen
+  body: none
+  auth: inherit
+}
+
+params:query {
+  keywords: kitchen
+}
+
+settings {
+  encodeUrl: true
+}

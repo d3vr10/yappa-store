@@ -1,0 +1,19 @@
+db:
+  username: mongoadmin
+  password: admin123
+  authDb: admin
+  name: yappa
+  port: 27017
+  ssl: false
+
+basic:
+  externalUrl: http://ecommerce.internal/
+
+security:
+  jwt:
+    secret: changeme
+    expiresIn: 4m
+    algo: HS256
+    refreshToken:
+      secret: changeme
+      expiresIn: 3d

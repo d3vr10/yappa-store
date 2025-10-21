@@ -1,0 +1,33 @@
+meta {
+  name: refresh tokens
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{SERVER_URL}}/auth/refresh-tokens
+  body: none
+  auth: none
+}
+
+body:json {
+  {
+    "email": "{{USER_EMAIL_1}}",
+    "password": "supergg!"
+  }
+}
+
+script:post-response {
+  const token = res.body.access_token
+  
+  if (!token) {
+    console.error('No token detected')
+    return
+  }
+  bru.setEnvVar('ACCESS_TOKEN', token)
+  console.log(`Refreshed token detected! saved into jwtToken envar: "${token.slice(0,10)}..."`)
+}
+
+settings {
+  encodeUrl: true
+}

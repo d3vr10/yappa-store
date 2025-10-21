@@ -1,0 +1,23 @@
+meta {
+  name: Update user
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{SERVER_URL}}/users/68e9e1f9454b476441d1ad441
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "herewego",
+    "email": "arzobispox98@gmail.com",
+    "isAdmin": true
+  }
+}
+
+settings {
+  encodeUrl: true
+}

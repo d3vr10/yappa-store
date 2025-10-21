@@ -1,0 +1,21 @@
+meta {
+  name: updateOne
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{SERVER_URL}}/categories/asdsa
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "description": "I was wrong.. the description... everything was wrong. I demand a proscription"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
