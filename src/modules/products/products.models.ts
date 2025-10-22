@@ -67,6 +67,7 @@ export class Product {
 export class ProductCategory {
     @Prop({
         required: true,
+        unique: true,
     })
     name!: string;
     @Prop({

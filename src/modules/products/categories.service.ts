@@ -23,7 +23,7 @@ export class ProductCategoriesService {
             .limit(effectiveLimit)
 
         if (keywords.length > 0) {
-            const searchPattern = keywords.map((kw) => `(?=\b${kw}\b)`).join('')
+            const searchPattern = keywords.map((kw) => `\\b${kw}\\b`).join('|')
             query = query.where({
                 $or: [
                     { name: { $regex: searchPattern, $options: 'i' } },
@@ -87,7 +87,7 @@ export class ProductCategoriesService {
                     message: 'Category(ies) already exist',
                     details: {
                         reason: 'Duplicate category(ies) were submitted',
-                        duplicatedDocsByIndex: err.writeErrors.filter((werr) => werr.code === 11000).map((werr) => werr.id),
+                        duplicatedDocsByIndex: err.writeErrors.filter((item) => item.err.code === 11000).map((item) => item.err.index),
                     }
                 })
             }

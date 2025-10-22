@@ -1,5 +1,5 @@
 import z from "zod";
-import { paginationSchema } from "../shared/shared.validators";
+import { paginationSchema, withKeywordInput } from "../shared/shared.validators";
 
 export const createProductReviewSchema = z.object({
     title: z.string().min(4),
@@ -32,14 +32,6 @@ export const createProductSchemaInput = z.object({
         .default(0),
 })
 
-
-export const withKeywordInput = z.object({
-    keywords: z.string()
-        .transform((val) => decodeURIComponent(val)
-            .split(',')
-            .map((kw) => kw.trim())
-        ).pipe(z.string().array()),
-})
 
 export const findManyProdsInput = paginationSchema.merge(withKeywordInput).partial()
 

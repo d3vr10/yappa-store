@@ -1,6 +1,6 @@
 import { createZodDto } from "nestjs-zod";
 import z from "zod";
-import { PAGINATION_PER_PAGE } from "./shared.constants";
+import { ONLY_ALPHANUMERIC_REGEX, PAGINATION_PER_PAGE } from "./shared.constants";
 
 export const paginationSchema = z.object({
     perPage: z.union([
@@ -13,4 +13,18 @@ export const paginationSchema = z.object({
     ]).default(1)
 }).partial()
 
+export const objectIdSchema = z.string().length(24)
+export const objectIdParamSchema = z.object({ 
+    id: objectIdSchema,
+})
+
 export class QueryPaginationDto extends createZodDto(paginationSchema) {}
+export const keywordSchema = z.string()
+    .regex(ONLY_ALPHANUMERIC_REGEX, 'keywords can only made of alphanumeric characters')
+export const withKeywordInput = z.object({
+    keywords: z.string()
+        .transform((val) => decodeURIComponent(val)
+            .split(',')
+            .map((kw) => kw.trim())
+        ).pipe(keywordSchema.array()),
+});
