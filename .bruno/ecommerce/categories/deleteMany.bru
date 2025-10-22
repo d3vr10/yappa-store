@@ -1,0 +1,22 @@
+meta {
+  name: deleteMany
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{SERVER_URL}}/categories
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+     "68f837646e958d3ba0efe1ab",
+     "68f837676e958d3ba0efe1af"
+  ]
+}
+
+settings {
+  encodeUrl: true
+}
