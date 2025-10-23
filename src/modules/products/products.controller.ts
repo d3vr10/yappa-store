@@ -1,60 +1,141 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Put, Query } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { BulkCreateProductDtoInput, CreateProductDtoInput, FindManyProductsQueryDtoInput, UpdateProductDtoInput } from "./products.dto";
+import { BulkInsertProductDtoInput, InsertOneProductDtoInput, FindManyProductsQueryDtoInput, UpdateProductDtoInput, DeleteManyProductDtoInput, UpdateManyProductsDtoInput } from "./products.dto";
 import { ProductsService } from "./products.service";
+import { ObjectIdParamDto } from "../shared/shared.dto";
+import { DeleteManyCategoryDtoInput } from "./categories.dto";
 
 @Controller('products')
 export class ProductsController {
 
-    constructor (
+    constructor(
         private productSrv: ProductsService,
-    ) {}
+    ) { }
 
     @Get(':id')
     async findProductById(
-        @Param('id') id: string,
+        @Param() params: ObjectIdParamDto,
     ) {
-        const result = await this.productSrv.findById(id)
+        const { id } = params
+        const result = await this.productSrv.findProductById(id)
         return result
     }
 
     @Get()
-    async findMany(@Query() queryParams: FindManyProductsQueryDtoInput) {
-        const { page, perPage } = queryParams
-        const result = await this.productSrv.findMany({ page, perPage })
+    async findManyProducts(
+        @Query() queryParams: FindManyProductsQueryDtoInput
+    ) {
+        const { page, perPage, keywords } = queryParams
+        const result = await this.productSrv.findManyProducts({ page, perPage, keywords })
         return result
     }
 
     @Post()
-    async createProduct(
-        @Body() payload: BulkCreateProductDtoInput,
+    async insertOneProduct(
+        @Body() payload: InsertOneProductDtoInput,
     ) {
-        const result = await this.productSrv.createMany(payload)
+        const result = await this.productSrv.insertOneProduct(payload)
         return result
     }
 
-    @Put(':id')
-    async updateProduct(
-        @Param('id') id: string,
+    @Post('bulk')
+    async insertManyProducts(
+        @Body() payload: BulkInsertProductDtoInput,
+    ) {
+        const result = await this.productSrv.insertManyProducts(payload)
+        return result
+    }
+
+    @Patch(':id')
+    async updateOneProduct(
+        @Param() params: ObjectIdParamDto,
         @Body() payload: UpdateProductDtoInput,
     ) {
-        const result = await this.productSrv.updateOne(id, payload)
+        const { id } = params
+        const result = await this.productSrv.updateOneProduct(id, payload)
+        return result
+    }
+
+    @Patch()
+    async updateManyProducts(
+        @Body() payload: UpdateManyProductsDtoInput,
+    ) {
+        const { ids, attrs } = payload
+        const result = await this.productSrv.updateManyProducts(ids, attrs)
+        return result
+    }
+
+
+    @Delete('bulk')
+    async deleteManyProducts(
+        @Body() payload: DeleteManyProductDtoInput,
+    ) {
+        const result = await this.productSrv.deleteManyProducts(payload)
         return result
     }
 
     @Delete(':id')
-    async deleteProduct(
-        @Param('id') id: string,
+    async deleteOneProduct(
+        @Param() params: ObjectIdParamDto
     ) {
-        await this.deleteProduct(id)
+        const { id } = params
+        const result = await this.productSrv.deleteManyProducts([id])
+        return result
     }
+
+
 
     @Get(':id/reviews')
     async getProductReviews(
-        @Param('id')
-        id: string,
+        @Param() params: ObjectIdParamDto,
     ) {
-        return await this.productSrv.getProductReviews(id)
+        const { id } = params
+        const result = await this.productSrv.getProductReviews(id)
+        return result
     }
+
+    // @Get(':id/reviews')
+    // async findManyProductReviews(
+    //     @Param() params: any,
+    // ) {
+
+    // }
+
+    @Post(':id/reviews')
+    @HttpCode(HttpStatus.MULTI_STATUS)
+    async insertManyProductReviews(
+        @Param() params: ObjectIdParamDto,
+        @Body() payload: any,
+        @Query() query: any,
+    ) {
+        const { id } = params
+        const result = await this.productSrv.insertManyProductReviews(id, payload, { bulkOp: true })
+        return result
+    }
+
+    @Patch(':prodId/reviews/:reviewId')
+    async updateOneProductReview(
+        @Param() params: any,
+        @Body() payload: any,
+    ) {
+
+    }
+
+
+    @Delete(':prodId/reviews/:reviewId')
+    async deleteOneProductReview(
+        @Param() params: any,
+    ) {
+
+    }
+
+    @Delete(':id/reviews')
+    async deleteManyProductReviews(
+        @Param() params: ObjectIdParamDto,
+        @Body() payload: any,
+    ) {
+        const { id } = params
+    }
+
 
 }

@@ -1,0 +1,27 @@
+meta {
+  name: updateManyProducts
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{SERVER_URL}}/products
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "ids": [
+      "68f9aa1b4e4d74c957e6f19f",
+      "68f99df1854bdfc974ec7626"
+    ],
+    "attrs": {
+      "name": "I was wrong about the product title... I demand a poscription!!"
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+}

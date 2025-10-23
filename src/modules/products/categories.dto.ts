@@ -1,5 +1,6 @@
 import { createZodDto } from "nestjs-zod";
 import { insertOneCategoryInput, insertManyCategoryInput, updateOneCategoryInput, updateManyCategoryInput, deleteManyCategoryInput, findManyCategoryQuery } from "./categories.validators";
+import { updateManyProductsInput } from "./products.validators";
 
 export class InsertOneCategoryDtoInput extends createZodDto(insertOneCategoryInput) {}
 export class InsertManyCategoryDtoInput extends createZodDto(insertManyCategoryInput) {}

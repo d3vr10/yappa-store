@@ -1,0 +1,21 @@
+meta {
+  name: updateOneProduct
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{SERVER_URL}}/products/aasdsaasd
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "I was wrong about the product title... I demand a poscription!!"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -11,6 +11,7 @@ export class Review {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
+        unique: true,
     })
     user!: User;
     @Prop({
@@ -32,35 +33,6 @@ export class Review {
 }
 
 @Schema({
-    timestamps: true,
-    strict: true,
-})
-export class Product {
-    @Prop({ required: true })
-    name!: string;
-    @Prop({ required: true })
-    description: string;
-    @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
-    category!: string;
-    @Prop({ required: true })
-    brandName!: string;
-    @Prop({ required: false })
-    brandLogo!: string;
-    @Prop({ default: 0, required: true })
-    stockCount!: number;
-    @Prop({ default: 0, required: true })
-    reviewCount!: number;
-    @Prop({ required: true })
-    price!: number;
-    @Prop({ required: false })
-    rating!: number;
-    @Prop({ required: true, default: [] })
-    reviews!: Review[];
-    @Prop({ required: true, default: [] })
-    images!: string[];
-}
-
-@Schema({
     strict: true,
     timestamps: true,
 })
@@ -76,6 +48,46 @@ export class ProductCategory {
     })
     description!: string;
 }
+
+@Schema({
+    timestamps: true,
+    strict: true,
+})
+export class Product {
+    @Prop({ required: true })
+    name!: string;
+    @Prop({ required: true })
+    description: string;
+    @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'ProductCategory' })
+    category!: ProductCategory;
+    @Prop({ required: true })
+    brandName!: string;
+    @Prop({ required: false })
+    brandLogo!: string;
+    @Prop({ default: 0, required: true })
+    stockCount!: number;
+    @Prop({ default: 0, required: true })
+    reviewCount!: number;
+    @Prop({ 
+        required: true,
+        type: mongoose.Schema.Types.Decimal128,
+    })
+    price!: number;
+    @Prop({
+        required: true,
+        uppercase: true,
+        default: 'USD',
+    })
+    currency: string;
+    @Prop({ required: false })
+    rating!: number;
+    @Prop({ required: true, default: [] })
+    reviews!: Review[];
+    @Prop({ required: true, default: [] })
+    images!: string[];
+}
+
+
 
 export const ProductSchema = SchemaFactory.createForClass(Product)
 export const ProductCategorySchema = SchemaFactory.createForClass(ProductCategory)

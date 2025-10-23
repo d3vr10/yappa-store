@@ -1,0 +1,22 @@
+meta {
+  name: deleteManyProducts
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{SERVER_URL}}/products/bulk
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    "68f99960c6a4ab54862eba38",
+    "68f99d58854bdfc974ec7624"
+  ]
+}
+
+settings {
+  encodeUrl: true
+}

@@ -14,6 +14,7 @@ export const paginationSchema = z.object({
 }).partial()
 
 export const objectIdSchema = z.string().length(24)
+export const objectIdListSchema = objectIdSchema.array()
 export const objectIdParamSchema = z.object({ 
     id: objectIdSchema,
 })

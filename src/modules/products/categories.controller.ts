@@ -28,6 +28,7 @@ export class ProductCategoriesController {
         @Body() payload: InsertOneCategoryDtoInput,
     ) {
         const result = await this.categoriesSrv.insertOne(payload)
+        return result
     }
 
     @Post('batch')

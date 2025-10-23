@@ -1,0 +1,40 @@
+meta {
+  name: insertManyProducts
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{SERVER_URL}}/products/bulk
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {
+      "name": "Jabon y micosilem x5",
+      "description": "Productos de aseo de primera necesidad!",
+      "categoryId": "68f994247c38b01b48b7cc9c",
+      "brandName": "Korz Nutrition - X",
+      "brandLogo": "https://uploadthing.com/tomatehabanero",
+      "stockCount": 30,
+      "price": 30.12,
+      "images": []
+    },
+    {
+      "name": "Carro volador (audi tt4)",
+      "description": "Productos de huida de maximo rendimiento!",
+      "categoryId": "68f9a9873548a2fc6ee98ef5",
+      "brandName": "Korz Nutrition - X",
+      "brandLogo": "https://uploadthing.com/tomatehabanero",
+      "stockCount": 30,
+      "price": 259.99,
+      "images": []
+    }
+  ]
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,19 @@
+meta {
+  name: findManyProducts with keyword
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{SERVER_URL}}/products?keywords=aseo
+  body: none
+  auth: inherit
+}
+
+params:query {
+  keywords: aseo
+}
+
+settings {
+  encodeUrl: true
+}

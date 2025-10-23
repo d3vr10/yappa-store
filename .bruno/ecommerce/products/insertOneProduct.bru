@@ -1,0 +1,28 @@
+meta {
+  name: insertOneProduct
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{SERVER_URL}}/products
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Jabon y micosilem x5",
+    "description": "Productos de aseo de primera necesidad!",
+    "categoryId": "68f994247c38b01b48b7cc9c",
+    "brandName": "Korz Nutrition - X",
+    "brandLogo": "https://uploadthing.com/tomatehabanero",
+    "stockCount": 30,
+    "price": 30.12,
+    "images": [] 
+  }
+}
+
+settings {
+  encodeUrl: true
+}
