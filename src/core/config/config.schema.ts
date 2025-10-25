@@ -33,7 +33,14 @@ export const configSchema = z.object({
   }).transform((val) => { 
     val.uri = `mongodb://${val.username}:${val.password}@${val.host}:${val.port}/${val.name}?authSource=${val.authDb}`
     return val
-  })
+  }),
+  s3: z.object({
+    accessKeyId: z.string().default('admin'),
+    secretAccessKey: z.string().default('admin123'),
+    region: z.string().default('us-east-1'),
+    forcePathStyle: z.boolean().default(true),
+    endpoint: z.string().default('http://localhost:9000'),
+  }).default({})
 });
 
 //For quick access to validators via single-level path-mapping object

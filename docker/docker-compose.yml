@@ -1,6 +1,10 @@
+volumes:
+  s3_data:
+    driver: local
+
 services:
   mongo:
-    image: mongodb/mongodb-community-server:8.0.15
+    image: docker.io/mongodb/mongodb-community-server:8.0.15
     ports:
     - 27017:27017
     environment:
@@ -9,3 +13,19 @@ services:
     restart: always
     volumes:
     - ./mongo_data:/data/db
+
+  s3:
+    image: docker.io/minio/minio:latest
+    ports:
+    - 9090:9090
+    - 9000:9000
+    volumes:
+    - s3_data:/data
+    environment:
+    - MINIO_ROOT_USER=admin
+    - MINIO_ROOT_PASSWORD=admin123
+    command: >-
+      server /data --address ":9000" --console-address ":9090"
+    
+    
+    

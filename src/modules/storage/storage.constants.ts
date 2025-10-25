@@ -1,0 +1,9 @@
+export const S3_ROOT_PREFIX = 'uploads';
+export const S3_AVATARS_PREFIX = 'avatars'
+export const S3_PRODUCTS_PREFIX = 'products'
+export const S3_ORDERS_PREFIX = 'orders'
+export const S3_BRANDS_PREFIX = 'brands'
+export const S3_DELIMITER = '/'
+export const S3_PUBLIC_BUCKET_NAME = 'public'
+export const S3_PRIVATE_BUCKET_NAME = 'uploads'
+export const S3_POLICY_LANGUAGE_VERSION='2012-10-17'

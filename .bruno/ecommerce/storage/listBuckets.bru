@@ -1,0 +1,15 @@
+meta {
+  name: listBuckets
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{SERVER_URL}}/storage/buckets
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

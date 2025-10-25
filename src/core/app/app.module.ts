@@ -9,6 +9,7 @@ import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler"
 import { APP_GUARD } from "@nestjs/core";
 import { AuthModule } from "@/modules/auth/auth.module";
 import { ProductsModule } from "@/modules/products/products.module";
+import { StorageModule } from "@/modules/storage/storage.module";
 
 @Module({
     imports: [
@@ -33,6 +34,7 @@ import { ProductsModule } from "@/modules/products/products.module";
         UsersModule,
         ProductsModule,
         AuthModule,
+        StorageModule,
         ThrottlerModule.forRoot({ throttlers: [
             {
                 name: 'default',

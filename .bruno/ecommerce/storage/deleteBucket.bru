@@ -1,0 +1,15 @@
+meta {
+  name: deleteBucket
+  type: http
+  seq: 1
+}
+
+delete {
+  url: {{SERVER_URL}}/storage/buckets/probando1
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

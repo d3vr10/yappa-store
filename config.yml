@@ -17,3 +17,7 @@ security:
     refreshToken:
       secret: changeme
       expiresIn: 3d
+
+s3:
+  accessKeyId: admin
+  secretAccessKey: admin123

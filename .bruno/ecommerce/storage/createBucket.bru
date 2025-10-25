@@ -1,0 +1,15 @@
+meta {
+  name: createBucket
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{SERVER_URL}}/storage/buckets
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

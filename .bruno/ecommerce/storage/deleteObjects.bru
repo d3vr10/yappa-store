@@ -1,0 +1,19 @@
+meta {
+  name: deleteObjects
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{SERVER_URL}}/storage/buckets/public/screenshot-2025-10-23_14-15-53.png?permanently=yes
+  body: none
+  auth: inherit
+}
+
+params:query {
+  permanently: yes
+}
+
+settings {
+  encodeUrl: true
+}
